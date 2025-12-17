@@ -30,7 +30,12 @@ if __name__ == '__main__':
             else:
                 print("Неизвестная команда", file=sys.stderr)
 
-
-    operation = input("Введите операцию: ")
-    chisla = list(map(int, input("Введите числа через пробел: ").split()))
-    evaluate(*chisla, op=operation)
+    while True:
+        print("Доступные операции:\n"
+              "add - сложение\n"
+              "sub - вычитание\n"
+              "mul - умножение\n"
+              "div - деление\n")
+        operation = input("Введите операцию: ")
+        chisla = list(map(int, input("Введите числа через пробел: ").split()))
+        evaluate(*chisla, op=operation)
