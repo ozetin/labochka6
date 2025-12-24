@@ -3,20 +3,19 @@
 
 import sys
 
-if __name__ == '__main__':
-    schet = 0
-    def hanoi(n, src, dst, aux):
-        global schet
-        if n == 1:
-            schet += 1
-            print(f"Move {schet} from {src} to {dst}")
-            return
-
-        hanoi(n - 1, src, aux, dst)
+def hanoi(n, src, dst, aux, schet=0):
+    if n == 1:
         schet += 1
         print(f"Move {schet} from {src} to {dst}")
-        hanoi(n - 1, aux, dst, src)
+        return schet
 
+    schet = hanoi(n - 1, src, aux, dst, schet)
+    schet += 1
+    print(f"Move {schet} from {src} to {dst}")
+    schet = hanoi(n - 1, aux, dst, src, schet)
+    return schet
+
+if __name__ == '__main__':
     n = int(input("Введите количество дисков: "))
-    bashni = list(input("Введите названия 3-х башен: ").split())
-    hanoi(n,bashni[0],bashni[1],bashni[2] )
+    bashni = input("Введите названия 3-х башен: ").split()
+    hanoi(n, bashni[0], bashni[1], bashni[2])
